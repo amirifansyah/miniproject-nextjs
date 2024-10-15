@@ -1,0 +1,10 @@
+// src/components/Loading.js
+const Loading = () => {
+    return (
+        <div className="flex items-center justify-center h-screen">
+            <p className="text-xl">Loading...</p>
+        </div>
+    );
+};
+
+export default Loading;
