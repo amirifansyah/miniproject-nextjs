@@ -1,6 +1,6 @@
 import { formatIDR } from '@/utils/price';
 import React from 'react';
-import { FaTimes } from 'react-icons/fa'; // Ikon untuk menutup modal
+import { FaTimes } from 'react-icons/fa'; 
 
 const ModalDetail = ({ isOpen, onClose, penjualanData }) => {
     if (!isOpen || !penjualanData) return null;

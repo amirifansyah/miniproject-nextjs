@@ -15,7 +15,7 @@ const Barang = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); // State for confirmation modal
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); 
     const [selectedBarang, setSelectedBarang] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 2;
@@ -48,7 +48,7 @@ const Barang = () => {
         setLoading(true);
         try {
             if (selectedBarang) {
-                await api.put(`/barang/${selectedBarang.kode}`, data);
+                await api.put(`/barang/${selectedBarang.id}`, data);
                 toast.success('Barang berhasil diupdate.');
             } else {
                 await api.post('/barang', data);
@@ -67,7 +67,7 @@ const Barang = () => {
 
     const handleDeleteConfirmation = (kode) => {
         setSelectedBarang(kode);
-        setIsConfirmModalOpen(true); // Open confirmation modal
+        setIsConfirmModalOpen(true); 
     };
 
     const handleDelete = async () => {
@@ -76,8 +76,8 @@ const Barang = () => {
             if (selectedBarang) {
                 await api.delete(`/barang/${selectedBarang}`);
                 toast.success('Barang berhasil dihapus.');
-                fetchBarang(); // Refresh the barang list
-                setIsConfirmModalOpen(false); // Close confirmation modal
+                fetchBarang(); 
+                setIsConfirmModalOpen(false); 
             }
         } catch (error) {
             console.error('Error deleting data:', error);
@@ -139,7 +139,7 @@ const Barang = () => {
                                                 <FaEdit />
                                             </button>
                                             <button
-                                                onClick={() => handleDeleteConfirmation(b.id)} // Use confirmation handler
+                                                onClick={() => handleDeleteConfirmation(b.id)} 
                                                 className="text-red-500 mr-2 hover:text-red-700 transition"
                                             >
                                                 <FaTrash />
@@ -158,7 +158,6 @@ const Barang = () => {
                     </div>
                 )}
 
-                {/* Pagination Controls */}
                 <div className="flex justify-center mt-4">
                     {Array.from({ length: totalPages }, (_, index) => (
                         <button
@@ -171,7 +170,6 @@ const Barang = () => {
                     ))}
                 </div>
 
-                {/* Modal for Create/Edit */}
                 {isModalOpen && (
                     <ModalBarang
                         onClose={() => setIsModalOpen(false)}
@@ -180,7 +178,6 @@ const Barang = () => {
                     />
                 )}
 
-                {/* Modal for Viewing Details */}
                 {isDetailModalOpen && (
                     <ModalDetail
                         onClose={() => setIsDetailModalOpen(false)}
@@ -188,7 +185,6 @@ const Barang = () => {
                     />
                 )}
 
-                {/* Confirmation Modal */}
                 {isConfirmModalOpen && (
                     <ConfirmationModal
                         onClose={() => setIsConfirmModalOpen(false)}

@@ -1,4 +1,3 @@
-// src/components/Sidebar.js
 import Link from 'next/link';
 import { FaUser, FaShoppingCart, FaBox } from 'react-icons/fa';
 

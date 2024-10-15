@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ModalDetail = ({ pelanggan, onClose, onDelete }) => {
-    if (!pelanggan) return null; // Return null if no pelanggan data is passed
+    if (!pelanggan) return null; 
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -9,7 +9,7 @@ const ModalDetail = ({ pelanggan, onClose, onDelete }) => {
                 <div className="bg-gray-800 text-white p-4 flex justify-between items-center rounded-t-lg">
                     <h2 className="text-lg font-bold">Detail Pelanggan</h2>
                     <button onClick={onClose} className="text-white hover:text-gray-400">
-                        &times; {/* Close icon */}
+                        &times; 
                     </button>
                 </div>
                 <div className="p-6">

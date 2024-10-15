@@ -1,5 +1,4 @@
-// src/app/layout.js
-import '../../src/app/globals.css'; // Pastikan untuk mengimpor CSS global
+import '../../src/app/globals.css';
 import Sidebar from '../components/Sidebar';
 
 const Layout = ({ children }) => {

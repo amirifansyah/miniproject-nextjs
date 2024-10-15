@@ -16,7 +16,7 @@ const Penjualan = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); // State for confirmation modal
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); 
     const [currentPenjualan, setCurrentPenjualan] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -34,10 +34,10 @@ const Penjualan = () => {
                 setPenjualan(penjualanResponse.data.data);
                 setTotalPages(penjualanResponse.data.last_page);
                 setPelanggan(pelangganResponse.data);
-                setBarangs(barangsResponse.data || []); // Ensure this is an array
+                setBarangs(barangsResponse.data || []); 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setBarangs([]); // Set to empty array on error
+                setBarangs([]); 
             } finally {
                 setLoading(false);
             }
@@ -72,8 +72,8 @@ const Penjualan = () => {
     };
 
     const handleDeleteConfirmation = (id) => {
-        setCurrentPenjualan({ id }); // Set currentPenjualan to the item to be deleted
-        setIsConfirmModalOpen(true); // Open confirmation modal
+        setCurrentPenjualan({ id }); 
+        setIsConfirmModalOpen(true); 
     };
 
     const handleDelete = async () => {
@@ -84,7 +84,7 @@ const Penjualan = () => {
                 const response = await api.get(`/penjualan?page=${currentPage}`);
                 setPenjualan(response.data.data);
                 setTotalPages(response.data.last_page);
-                setIsConfirmModalOpen(false); // Close confirmation modal
+                setIsConfirmModalOpen(false); 
             }
         } catch (error) {
             console.error('Error deleting data:', error);
@@ -138,7 +138,7 @@ const Penjualan = () => {
                                             <FaEdit />
                                         </button>
                                         <button 
-                                            onClick={() => handleDeleteConfirmation(p.id)} // Use confirmation handler
+                                            onClick={() => handleDeleteConfirmation(p.id)} 
                                             className="text-red-500 mr-2 hover:text-red-700 transition"
                                         >
                                             <FaTrash />
@@ -156,7 +156,6 @@ const Penjualan = () => {
                     </table>
                 )}
 
-                {/* Pagination Controls */}
                 <div className="flex justify-center mt-4">
                     {Array.from({ length: totalPages }, (_, index) => (
                         <button
@@ -169,7 +168,6 @@ const Penjualan = () => {
                     ))}
                 </div>
 
-                {/* Modal for Create/Edit */}
                 {isModalOpen && (
                     <ModalPenjualan
                         isOpen={isModalOpen} 
@@ -181,7 +179,6 @@ const Penjualan = () => {
                     />
                 )}
 
-                {/* Modal for Viewing Details */}
                 {isDetailModalOpen && (
                     <ModalDetail
                         isOpen={isDetailModalOpen}
@@ -190,7 +187,6 @@ const Penjualan = () => {
                     />
                 )}
 
-                {/* Confirmation Modal */}
                 {isConfirmModalOpen && (
                     <ConfirmationModal
                         onClose={() => setIsConfirmModalOpen(false)}

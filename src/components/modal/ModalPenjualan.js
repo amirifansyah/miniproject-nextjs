@@ -25,8 +25,6 @@ const ModalPenjualan = ({ isOpen, onClose, onSubmit, initialData, pelangganData,
     const calculateSubtotal = (items) => {
         const total = (items || []).reduce((acc, item) => {
             const barang = item.barang;
-
-            // Check if barang exists, if not, find it in barangsData
             const harga = barang
                 ? parseFloat(barang.harga)
                 : parseFloat(barangsData.find(b => b.kode === item.kode_barang)?.harga) || 0;
@@ -37,32 +35,32 @@ const ModalPenjualan = ({ isOpen, onClose, onSubmit, initialData, pelangganData,
     };
 
     React.useEffect(() => {
-        calculateSubtotal(formData.items); // Recalculate subtotal whenever items change
+        calculateSubtotal(formData.items); 
     }, [formData.items]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const submittedItems = formData.items.map(item => ({
             ...item,
-            qty: item.qty === '0' ? 1 : item.qty // Convert 0 to 1 for submission
+            qty: item.qty === '0' ? 1 : item.qty 
         }));
-        onSubmit({ ...formData, items: submittedItems, subtotal }); // Include subtotal in the submitted data
+        onSubmit({ ...formData, items: submittedItems, subtotal }); 
         onClose();
     };
 
     const addItem = () => {
         setFormData({
             ...formData,
-            items: [...formData.items, { kode_barang: '', qty: '' }] // Start with an empty qty
+            items: [...formData.items, { kode_barang: '', qty: '' }] 
         });
     };
 
     const handleItemChange = (index, field, value) => {
         const newItems = [...formData.items];
         if (field === 'qty') {
-            newItems[index].qty = value; // Allow any value, including 0
+            newItems[index].qty = value; 
         } else {
-            newItems[index][field] = value; // Handle other fields
+            newItems[index][field] = value; 
         }
         setFormData({ ...formData, items: newItems });
     };
@@ -127,7 +125,6 @@ const ModalPenjualan = ({ isOpen, onClose, onSubmit, initialData, pelangganData,
                             </p>
                         </div>
 
-                        {/* Input for items */}
                         <div className="mb-4">
                             <div className="flex justify-between items-center mb-1">
                                 <label className="block">Items</label>
@@ -158,9 +155,9 @@ const ModalPenjualan = ({ isOpen, onClose, onSubmit, initialData, pelangganData,
                                         type="number"
                                         value={item?.qty}
                                         onChange={(e) => handleItemChange(index, 'qty', e.target.value)}
-                                        placeholder="0" // Show 0 as placeholder
+                                        placeholder="0" 
                                         className="border rounded-lg w-1/4 px-2 py-1 mr-2"
-                                        min="0" // Allow 0 as valid input
+                                        min="0" 
                                     />
                                     <button
                                         type="button"

@@ -14,7 +14,7 @@ const Pelanggan = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); // State for confirmation modal
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); 
     const [selectedPelanggan, setSelectedPelanggan] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 2;
@@ -73,7 +73,7 @@ const Pelanggan = () => {
 
     const handleDeleteConfirmation = (id) => {
         setSelectedPelanggan(id);
-        setIsConfirmModalOpen(true); // Open confirmation modal
+        setIsConfirmModalOpen(true); 
     };
 
     const handleDelete = async () => {
@@ -81,7 +81,7 @@ const Pelanggan = () => {
             try {
                 await api.delete(`/pelanggan/${selectedPelanggan}`);
                 toast.success('Pelanggan berhasil dihapus!');
-                setIsConfirmModalOpen(false); // Close confirmation modal
+                setIsConfirmModalOpen(false); 
                 const response = await api.get('/pelanggan', {
                     params: {
                         page: currentPage,
@@ -147,7 +147,7 @@ const Pelanggan = () => {
                                             <FaEdit />
                                         </button>
                                         <button
-                                            onClick={() => handleDeleteConfirmation(p.id)} // Use confirmation handler
+                                            onClick={() => handleDeleteConfirmation(p.id)} 
                                             className="text-red-500 mr-2 hover:text-red-700 transition"
                                         >
                                             <FaTrash />
@@ -166,7 +166,6 @@ const Pelanggan = () => {
                 </div>
             )}
 
-            {/* Pagination Controls */}
             <div className="flex justify-center mt-4">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
@@ -179,7 +178,6 @@ const Pelanggan = () => {
                 ))}
             </div>
 
-            {/* Modal for Create/Edit */}
             {isModalOpen && (
                 <ModalPelanggan
                     onClose={() => setIsModalOpen(false)}
@@ -188,7 +186,6 @@ const Pelanggan = () => {
                 />
             )}
 
-            {/* Modal for Viewing Details */}
             {isDetailModalOpen && (
                 <ModalDetailPelanggan
                     onClose={() => setIsDetailModalOpen(false)}
@@ -196,7 +193,6 @@ const Pelanggan = () => {
                 />
             )}
 
-            {/* Confirmation Modal */}
             {isConfirmModalOpen && (
                 <ConfirmationModal
                     onClose={() => setIsConfirmModalOpen(false)}
